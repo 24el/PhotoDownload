@@ -6,16 +6,17 @@ class PhotoTextTableCreator
     public function create()
     {
         $pdo = DatabaseConnection::getInstance()->getPDOConnection();
-                    $stmt = $pdo->prepare("CREATE TABLE `photo_text` (
-                `id` INT(11) NOT NULL AUTO_INCREMENT,
-                `photo_id` INT(11) NOT NULL DEFAULT '0',
-                `text` TEXT NOT NULL COLLATE 'cp1251_general_ci',
-                PRIMARY KEY (`id`),
-                INDEX `photo_id` (`photo_id`),
-                CONSTRAINT `photo_id` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
-            )
-            COLLATE='cp1251_general_ci'
-            ENGINE=InnoDB");
+        $stmt = $pdo->prepare("CREATE TABLE `photo_text` (
+            `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+            `photo_id` INT(11) UNSIGNED NOT NULL,
+            `text` TEXT NOT NULL,
+            PRIMARY KEY (`id`),
+            INDEX `photo_id` (`photo_id`),
+            CONSTRAINT `photo_id` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+        )
+        COLLATE='utf8_general_ci'
+        ENGINE=InnoDB
+        AUTO_INCREMENT=234");
         $stmt->execute();
     }
 

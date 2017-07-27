@@ -7,13 +7,13 @@ class UsersTableCreator
     {
         $pdo = DatabaseConnection::getInstance()->getPDOConnection();
         $stmt = $pdo->prepare("CREATE TABLE `users` (
-	                `id` INT(11) NOT NULL,
-                    `name` VARCHAR(50) NOT NULL DEFAULT '0',
-                    `last_name` VARCHAR(50) NOT NULL DEFAULT '0',
-                    PRIMARY KEY (`id`)
-                )
-                COLLATE='cp1251_general_ci'
-                ENGINE=InnoDB");
+            `id` INT(11) UNSIGNED NOT NULL,
+            `name` VARCHAR(50) NOT NULL,
+            `last_name` VARCHAR(50) NOT NULL,
+            PRIMARY KEY (`id`)
+        )
+        COLLATE='utf8_general_ci'
+        ENGINE=InnoDB");
         $stmt->execute();
     }
 

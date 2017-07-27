@@ -7,15 +7,15 @@ class PhotosTableCreator
     {
         $pdo = DatabaseConnection::getInstance()->getPDOConnection();
         $stmt = $pdo->prepare("CREATE TABLE `photos` (
-                    `id` INT(11) NOT NULL,
-                    `album_id` INT(11) NOT NULL,
-                    `reference` VARCHAR(100) NOT NULL,
-                    PRIMARY KEY (`id`),
-                    INDEX `photo_album` (`album_id`),
-                    CONSTRAINT `photo_album` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
-                )
-                COLLATE='cp1251_general_ci'
-                ENGINE=InnoDB");
+            `id` INT(11) UNSIGNED NOT NULL,
+            `album_id` INT(11) UNSIGNED NOT NULL,
+            `reference` VARCHAR(100) NOT NULL,
+            PRIMARY KEY (`id`),
+            INDEX `photo_album` (`album_id`),
+            CONSTRAINT `album_id` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+        )
+        COLLATE='utf8_general_ci'
+        ENGINE=InnoDB");
         $stmt->execute();
     }
 
